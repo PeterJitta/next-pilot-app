@@ -10,6 +10,7 @@ export default function Home() {
 		>
 			<p>VERCEL_ENV: {process.env.VERCEL_ENV ?? "N/A"}</p>
 			<p>VERCEL_URL: {process.env.VERCEL_URL ?? "N/A"}</p>
+			<p>API Endpoint: {process.env.NEXT_PUBLIC_API ?? "N/A"}</p>
 			<p>NEXT_PUBLIC_ENV: {process.env.NEXT_PUBLIC_ENV ?? "N/A"}</p>
 		</main>
 	);

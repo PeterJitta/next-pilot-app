@@ -1,4 +1,4 @@
-name: PRODUCTION deployment
+name: PILOT deployment
 run-name: '${{ github.workflow }} by ${{ github.actor }}'
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}

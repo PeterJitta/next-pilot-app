@@ -1,0 +1,30 @@
+name: BETA deployment
+run-name: '${{ github.workflow }} by ${{ github.actor }}'
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  Deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18          
+          cache: npm
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Pull the GitHub Environment variables
+        run: |
+          echo "NEXT_PUBLIC_ENV=beta" >> $GITHUB_ENV
+      - name: Build Project Artifacts
+        run: vercel build  --prod --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Deploy Project Artifacts to Vercel
+        run: vercel deploy --prod --skip-domain --token=${{ secrets.VERCEL_TOKEN }}

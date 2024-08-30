@@ -24,4 +24,4 @@ jobs:
       - name: Build Project Artifacts
         run: vercel build  --prod --token=${{ secrets.VERCEL_TOKEN }}
       - name: Deploy Project Artifacts to Vercel
-        run: vercel deploy --build-env NEXT_PUBLIC_ENV=pilot --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel deploy --prod --skip-domain --build-env NEXT_PUBLIC_ENV=pilot --token=${{ secrets.VERCEL_TOKEN }}
